@@ -1,0 +1,113 @@
+#include <iostream>
+#define top1 10
+#define top2 10
+#define top3 10
+using namespace std;
+class Stack{ // 3 stacks
+private:
+    int arr[top1+top2+top3] = {};
+    int size1;
+    int size2;
+    int size3;
+public:
+    Stack(){
+        size1 = size2 = size3 = 0;
+    }
+    void push(int stackNum, int val);
+    void pop(int stacNum);
+    void printStack1();
+    void printStack2();
+    void printStack3();
+};
+void Stack :: push(int stackNum, int val){
+    if(stackNum == 1){
+        if(size1 == top1){
+            cout << "stack1 is full" << endl;
+            return;
+        }
+        arr[size1++] = val;
+    }
+    else if(stackNum == 2){
+        if(size2 == top2){
+            cout << "stack1 is full" << endl;
+            return;
+        }
+        arr[size2++] = val;
+    }
+    else if(stackNum == 3){
+        if(size3 == top3){
+            cout << "stack1 is full" << endl;
+            return;
+        }
+        arr[size3++] = val;
+    }
+    else{
+        cout << "wrong stack number" << endl;
+    }
+}
+void Stack :: pop(int stackNum){
+    if(stackNum == 1){
+        if(size1 == 0){
+            cout << "there are no elements to pop in stack1" << endl;
+            return;
+        }
+        --size1;
+    }
+    else if(stackNum == 2){
+        if(size2 == 0){
+            cout << "there are no elements to pop in stack2" << endl;
+            return;
+        }
+        --size2;
+    }
+    else if(stackNum == 3){
+        if(size3 == 0){
+            cout << "there are no elements to pop in stack3" << endl;
+            return;
+        }
+        --size3;
+    }
+    else{
+        cout << "wrong stack number" << endl;
+    }
+}
+void Stack ::printStack1() {
+    if(size1 == 0){
+        cout << "there are no elements to print in stack1" << endl;
+        return;
+    }
+    for(int i = 0 ; i<size1 ; i++) cout << arr[i] << " ";
+    cout << endl;
+}
+void Stack :: printStack2(){
+    if(size2 == 0){
+        cout << "there are no elements to print in stack2" << endl;
+        return;
+    }
+    for(int i = 0 ; i<size2 ; i++) cout << arr[i] << " ";
+    cout << endl;
+}
+void Stack :: printStack3(){
+    if(size3 == 0){
+        cout << "there are no elements to print in stack3" << endl;
+        return;
+    }
+    for(int i = 0 ; i<size3 ; i++) cout << arr[i] << " ";
+    cout << endl;
+}
+int main(){
+    Stack s;
+    for(int i = 1 ; i<=10 ; i++){
+        s.push(1, i);
+        s.push(2, i);
+        s.push(3, i);
+    }
+    s.push(1, 11); // stack1 is full
+    s.pop(1);
+    s.printStack1(); // 1 2 3 4 5 6 7 8 9
+    s.pop(2);
+    s.pop(2);
+    s.printStack2(); // 1 2 3 4 5 6 7 8
+    s.printStack3(); // 1 2 3 4 5 6 7 8 9 10
+    s.pop(4); // wrong stack number
+}
