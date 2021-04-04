@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+class Node{
+public:
+    char data;
+    Node* next;
+    Node(char data){
+        this->data = data;
+        next = nullptr;
+    }
+};
+class linkedlist{
+private:
+    Node* first;
+    Node* last;
+    int size;
+public:
+    linkedlist(){
+        first = last = nullptr;
+        size = 0;
+    }
+    void push_back(char data);
+    void print();
+    void getSize();
+};
+void linkedlist :: push_back(char data){
+    Node* tmp = new Node(data);
+    if(first == nullptr){
+        first = last = tmp;
+    }
+    else{
+        last->next = tmp;
+        last = tmp;
+    }
+    cout << data << " is pushed back into the list" << endl;
+    ++size;
+}
+void linkedlist :: print(){
+    Node* tmp = first;
+    cout << "the list is: ";
+    while(tmp != nullptr){
+        cout << tmp->data << " ";
+        tmp = tmp->next;
+    }
+    cout << endl;
+}
+void linkedlist :: getSize(){
+    cout << "the size of the list is: " << size << endl;
+}
+int main(){
+    linkedlist l;
+    l.push_back('m');
+    l.push_back('a');
+    l.push_back('r');
+    l.push_back('w');
+    l.push_back('a');
+    l.push_back('n');
+    l.print();
+    l.getSize();
+    return 0;
+}
